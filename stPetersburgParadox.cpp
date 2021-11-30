@@ -26,8 +26,7 @@ int simulateGame() {
 
 int main() {
     srand(time(NULL));  // initiate random seed
-    std::vector<int> currentPayOffs;
-    std::vector<int> expectedPayOffs;
+    std::vector<double> expectedPayOffs;
 
     int sum = 0;
     for (int i = 1; i <= n; i++) {
@@ -35,14 +34,14 @@ int main() {
         int gamePayOff = simulateGame();
         // calculate expected payOff (average) for the i simulated games.
         sum += gamePayOff;
-        int thisExpectedPayOff = sum / i;
+        double thisExpectedPayOff = (double) sum / i;
         expectedPayOffs.push_back(thisExpectedPayOff);
     }
     
     // write output to file
     std::ofstream file;
     file.open("stPetersburgOutput.txt");
-    for (int expectedPayoff : expectedPayOffs) {
+    for (double expectedPayoff : expectedPayOffs) {
         file << expectedPayoff << std::endl;
     }
     file.close();
